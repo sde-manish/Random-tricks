@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="display: flex; justify-content: center; align-items: center; background-color:gray;">
+    <div class="first" style="background-color:cornflowerblue; padding: 20px; border-radius: 10px;">
+        <div><h1 style="font-size: 40px;">Banglore Weather</h1></div>
+        <div><h1><span id="temp"></span>°C temperature</h1></div>
+        <div><h1> <span id="wind-speed"></span>km/h Wind Speed</h1></div>
+        <div><h1> <span id="humadity"></span>% Humidity</h1></div>
+    </div>
+</body>
+<script>
+
+    const temperature = document.getElementById('temp');
+    const wind = document.getElementById('wind-speed');
+    const Humadity = document.getElementById('humadity');
+
+    const wxhr = new XMLHttpRequest();
+
+    const url = 'https://api.openweathermap.org/data/2.5/weather?q=bangalore&appid=62ef2c2a5065fc86cd62570d3b8219fa&units=metric';
+
+    wxhr.open('GET', url);
+
+    wxhr.onreadystatechange = function(){
+        console.log(wxhr.readyState);
+        if (wxhr.readyState === 4) {
+            const data = JSON.parse(this.responseText);
+            console.log(data);
+            temperature.innerHTML = data.main.temp;
+            Humadity.innerHTML = data.main.humidity;
+            wind.innerHTML = data.wind.speed;
+
+        }
+    }
+
+    wxhr.send();
+
+</script>
+</html>
