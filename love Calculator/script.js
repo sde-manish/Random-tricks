@@ -4,21 +4,47 @@ const Result = document.getElementById('result');
 const Message = document.getElementById('message');
 const Button = document.getElementById('button');
 
+const resultObject = {};
+var letters = /^[A-Za-z]+$/;
+
 Button.addEventListener('click', function(e){
-    console.log("Clicked");
+    Message.innerHTML = "";
+    Result.innerHTML = ''
     validate();
 })
 
 function validate(){
-    if (Name.value === "" || Name.value === Number) {
+    if (!Name.value.match(letters)) {
         Message.innerHTML = `Please Enter your Name`;
-    } else if(Crush_name.value === "" || Crush_name.value === Number) {
+    } else if (!Crush_name.value.match(letters)) {
         Message.innerHTML = `Please Enter your crush Name`;
+    } else {
+        resultCheck()
+        
     }
-console.log('validate');
-result()
+}
+
+function resultCheck(){
+    let matchFound = false;
+    Object.keys(resultObject).forEach(key => {
+        if (key === Crush_name.value) {
+            Result.innerHTML = `${resultObject[key]}%`;
+            Name.value = '';
+            Crush_name.value = '';
+            matchFound = true;
+        }
+    });
+
+    if (!matchFound) {
+        result();
+    }
+   
 }
 
 function result(){
-console.log('Result');
+    const RandomNumber = Math.floor((Math.random()* (100-10)+10))
+    Result.innerHTML = `${RandomNumber}%`;
+    resultObject[Crush_name.value] = RandomNumber;
+    Name.value = '';
+    Crush_name.value = '';
 }
