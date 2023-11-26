@@ -4,14 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{background-color: darkslategray; display: flex; justify-content: center;}
+        #container{margin: 30px;}
+        .sp{color: white;padding: 0 5px;}
+    </style>
 </head>
-<body style="padding: 20px; display: flex; justify-content: center; color: white; background-color: darkslateblue;">
-    <div>
-        <input type="text" id="inpText" style="font-size: 50px; border-radius: 4px;" placeholder="Enter">
-        <h1>Default Method:<span id="default"></span></h1>
-        <h1>Debounce Method:<span id="default"></span></h1>
-        <h1>Throttle Method:<span id="default"></span></h1>
+<body>
+    <div id="container">
+        <input type="text" id="inpText" style="font-size: 40px; border-radius: 4px;" placeholder="Enter">
+        <div id>
+            <h1>Default Method:<span class="sp" id="default"></span></h1>
+            <h1>Debounce Method:<span class="sp" id="debounce"></span></h1>
+            <h1>Throttle Method:<span class="sp" id="throttle"></span></h1>
+        </div>
 
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
